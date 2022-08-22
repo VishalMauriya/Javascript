@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.min.js"></script>
+
+        <link rel="stylesheet" href="new.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+      <center><h2>Angular.JS Calculator</h2>
+        <hr>
+
+          <div class="container" ng-app="CalculatorApp" ng-controller="CalculatorController">
+                <input type="text" class="txt" ng-model="txt"/><br><br>
+                    
+                <button type="button" class="btn" ng-click="set_opr('/')">÷</button>
+                <button type="button" class="btn" ng-click="set_opr('*')">x</button>
+                <button type="button" class="btn" ng-click="set_opr('-')">-</button>
+                <button type="button" class="btn" ng-click="set_opr('+')">+</button>
+
+                <input  type="button" class="btnNum" ng-click="set_num('1')" value="1" />
+                <button type="button" class="btnNum" ng-click="set_num('2')">2</button>
+                <button type="button" class="btnNum" ng-click="set_num('3')">3</button><br>
+
+                <button type="button" class="btnNum" ng-click="set_num('4')">4</button>
+                <button type="button" class="btnNum" ng-click="set_num('5')">5</button>
+                <button type="button" class="btnNum" ng-click="set_num('6')">6</button><br>
+
+                <button type="button" class="btnNum" ng-click="set_num('7')">7</button>
+                <button type="button" class="btnNum" ng-click="set_num('8')">8</button>
+                <button type="button" class="btnNum" ng-click="set_num('9')">9</button><br>
+
+                <button type="button" class="btnNum" ng-click="set_num('0')">0</button>
+                <button type="button" class="btnNum" ng-click="set_num('.')">.</button>
+                <button type="button" class="btnBack" ng-click="backSpace()">⬅</button><br>
+                <button type="button" class="btnResult" ng-click="result()">=</button>
+                <button type="button" class="btnClr" ng-click="clr()">CLR</button>
+                
+    </div></center>
+
+          <script>
+            var app = angular.module('CalculatorApp', []);
+            app.controller('CalculatorController', function($scope) {
+            $scope.txt="";
+            $scope.opr_case="";
+            $scope.num2="";
+            $scope.num1=0;
+            $scope.flag=false;
+
+            $scope.set_num=function($temp){
+                // if($temp =="." && $scope.txt.includes(".")){
+                //     return;
+                // }
+
+                if($temp =="." && $scope.txt.indexOf(".") != -1){
+                    return;
+                }
+                    if($scope.flag==true)
+                    {$scope.txt="";
+                    $scope.flag=false;    
+                    }
+                    $scope.txt=$scope.txt+$temp;
+            }
+
+            $scope.set_opr=function($temp){   
+                $scope.num1=parseFloat($scope.txt);
+                $scope.flag=true;
+                $scope.opr_case=$temp;
+            }
+
+            $scope.result=function(){   
+                $scope.num2=parseFloat($scope.txt);
+                
+                switch($scope.opr_case)
+                {
+                    case '+':$scope.txt=$scope.num1+$scope.num2; break;
+                    case '-':$scope.txt=$scope.num1-$scope.num2; break;
+                    case '*':$scope.txt=$scope.num1*$scope.num2; break;
+                    case '/':$scope.txt=$scope.num1/$scope.num2; break;
+                }
+               }
+
+            $scope.backSpace = function(){
+                let len=$scope.txt.length;
+                $scope.txt=$scope.txt.substr(0,len-1);
+            }
+
+            $scope.clr = function(){
+                $scope.txt="";
+            }
+
+            });
+          </script>
+    </body>
+</html>

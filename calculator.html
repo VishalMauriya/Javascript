@@ -1,0 +1,71 @@
+<html>
+    <head>
+    </head>
+    <body style="background-color: skyblue;">
+        <center>
+        <h1>Simple Calculator</h1>
+        <hr><br><br><br>
+
+        Input: <input type="text" id="t1" onkeyup="add()">
+        <select name="operations" id="operations" onclick="operate()">
+            <option value="add">+</option>
+            <option value="sub">-</option>
+            <option value="multiply" onkeyup="operate()">*</option>
+            <option value="divide" onkeyup="operate()">/</option>
+            <option value="percent" onkeyup="operate()">%</option>
+          </select>
+          
+        <input type="text" id="t2" onkeyup="operate()"><br><br><br><br>
+
+        output: <input type="text" id="out"><br><br><br>
+    </center>
+
+        <script>
+            let a = 0, b = 0;
+            function operate(){
+                if(document.getElementById('operations').value == "add"){
+                    add();
+                }else if(document.getElementById('operations').value == "sub"){
+                    sub();
+                }
+                else if(document.getElementById('operations').value == "multiply"){
+                    mul();
+                }else if(document.getElementById('operations').value == "divide"){
+                    div();
+                }else if(document.getElementById('operations').value == "percent"){
+                    percent();
+                }
+            }
+
+            function add(){
+                a = parseInt(document.getElementById('t1').value);
+                b = parseInt(document.getElementById('t2').value);
+                document.getElementById('out').value = a+b;
+            }
+
+            function sub(){
+                a = parseInt(document.getElementById('t1').value);
+                b = parseInt(document.getElementById('t2').value);
+                document.getElementById('out').value = a-b;
+            }
+
+            function mul(){
+                a = parseInt(document.getElementById('t1').value);
+                b = parseInt(document.getElementById('t2').value);
+                document.getElementById('out').value = a*b;
+            }
+
+            function div(){
+                a = parseInt(document.getElementById('t1').value);
+                b = parseInt(document.getElementById('t2').value);
+                document.getElementById('out').value = a/b;
+            }
+
+            function percent(){
+                a = parseInt(document.getElementById('t1').value);
+                b = parseInt(document.getElementById('t2').value);
+                document.getElementById('out').value = (a/b) * 100;
+            }
+        </script>
+    </body>
+</html>

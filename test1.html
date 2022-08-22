@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.min.js"></script>
+
+        <link rel="stylesheet" href="new.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+      <center><h2>Angular.JS Calculator</h2>
+        <hr>
+
+          <div  ng-app="CalculatorApp" ng-controller="CalculatorController">
+{{txt}}
+<select>
+    <option>Chandigarh</option>
+    <option>Panchkula</option>
+    <option>It Park</option>
+    <option>Ludhiana</option>
+</select>
+
+<hr/>
+
+<select name="" id="">
+    <option ng-repeat="city in cityList" ng-value="{{$index}}">{{city.label}}</option>
+</select>
+
+<hr/>
+
+<ol name="" id="">
+    <li ng-repeat="city in cityList">{{city}}</li>
+</ol>
+
+
+<hr/>
+
+<select name="" id="">
+    <option ng-repeat="city in cityList track by $index">{{ $i}}</option>
+</select>
+
+    </div></center>
+
+          <script>
+            var app = angular.module('CalculatorApp', []);
+            app.controller('CalculatorController', function($scope) {
+            $scope.txt="spic";
+
+            $scope.cityList = ["abc", "xyz", "uvw"];
+
+            });
+          </script>
+    </body>
+</html>

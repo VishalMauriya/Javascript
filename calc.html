@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.min.js"></script>
+        <link rel="stylesheet" href="calcCss.css">
+    </head>
+    <body style="background-color: lightgoldenrodyellow;">
+
+        <center><h1>Angular.js Calculator</h1></center>
+        <hr><br><br>
+
+        <center><div ng-app="CalculatorApp" ng-controller="CalculatorController">
+            <p><input type="number" class="txt" ng-model="a" placeholder="Enter first number"></p>
+
+            <p><select ng-model="operator" class="operate">
+                <option>+</option>
+                <option>*</option>
+                <option>-</option>
+                <option>/</option>
+             </select></p>
+
+            <p><input type="number" class="txt" ng-model="b" placeholder="Enter Second number"></p>
+            
+            <p style="margin-top: 100px;">Result is: </p><p class="output"> {{ result() }}</p>
+
+           </div></center>
+
+        <script>
+
+            angular.module('CalculatorApp', [])
+    .controller('CalculatorController', function($scope) {
+        $scope.result = function() {
+            if ($scope.operator == '+') {
+                return $scope.a + $scope.b;
+            }
+            if ($scope.operator == '-') {
+                return $scope.a - $scope.b;
+            }
+            if ($scope.operator == '*') {
+                return $scope.a * $scope.b;
+            }
+            if ($scope.operator == '/') {
+                return $scope.a / $scope.b;
+            }
+        };
+    });
+        </script>
+    </body>
+</html>
